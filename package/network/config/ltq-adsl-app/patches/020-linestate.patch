@@ -1,0 +1,35 @@
+--- a/src/dsl_cpe_control.c
++++ b/src/dsl_cpe_control.c
+@@ -3273,7 +3273,31 @@ DSL_CPE_STATIC DSL_int_t DSL_CPE_Event_S
+ #ifdef INCLUDE_SCRIPT_NOTIFICATION
+    if (g_sRcScript != DSL_NULL)
+    {
+-      if ( (nLineState == DSL_LINESTATE_SHOWTIME_TC_SYNC) &&
++      if ( (nLineState == DSL_LINESTATE_SILENT) &&
++           (g_nPrevLineState[nDevice] != DSL_LINESTATE_SILENT) )
++      {
++         if (DSL_CPE_SetEnv("DSL_INTERFACE_STATUS", "READY") == DSL_SUCCESS)
++         {
++            bExec = DSL_TRUE;
++         }
++      }
++      else if ( (nLineState == DSL_LINESTATE_HANDSHAKE) &&
++                (g_nPrevLineState[nDevice] != DSL_LINESTATE_HANDSHAKE) )
++      {
++         if (DSL_CPE_SetEnv("DSL_INTERFACE_STATUS", "HANDSHAKE") == DSL_SUCCESS)
++         {
++            bExec = DSL_TRUE;
++         }
++      }
++      else if ( (nLineState == DSL_LINESTATE_FULL_INIT) &&
++                (g_nPrevLineState[nDevice] != DSL_LINESTATE_FULL_INIT) )
++      {
++         if (DSL_CPE_SetEnv("DSL_INTERFACE_STATUS", "TRAINING") == DSL_SUCCESS)
++         {
++            bExec = DSL_TRUE;
++         }
++      }
++      else if ( (nLineState == DSL_LINESTATE_SHOWTIME_TC_SYNC) &&
+            (g_nPrevLineState[nDevice] != DSL_LINESTATE_SHOWTIME_TC_SYNC) )
+       {
+          if (DSL_CPE_SetEnv("DSL_INTERFACE_STATUS", "UP") == DSL_SUCCESS)
