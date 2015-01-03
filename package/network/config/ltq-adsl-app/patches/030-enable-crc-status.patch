@@ -1,0 +1,47 @@
+--- a/src/dsl_cpe_cli_access.c
++++ b/src/dsl_cpe_cli_access.c
+@@ -7170,12 +7170,12 @@ DSL_CLI_LOCAL DSL_int_t DSL_CPE_CLI_PM_D
+          (DSL_uint32_t)pData.interval.bValid, (DSL_uint32_t)pData.data.nHEC, (DSL_uint32_t)pData.data.nTotalCells,
+          (DSL_uint32_t)pData.data.nUserTotalCells, (DSL_uint32_t)pData.data.nIBE,
+          (DSL_uint32_t)pData.data.nTxUserTotalCells, (DSL_uint32_t)pData.data.nTxIBE);
+-#if (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1)
++//#if (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1)
+       DSL_CPE_FPrintf (out,
+          " nCRC_P=%u nCRCP_P=%u nCV_P=%u nCVP_P=%u",
+          (DSL_uint32_t)pData.data.nCRC_P, (DSL_uint32_t)pData.data.nCRCP_P, (DSL_uint32_t)pData.data.nCV_P,
+          (DSL_uint32_t)pData.data.nCVP_P);
+-#endif /* (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1) */
++//#endif /* (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1) */
+       DSL_CPE_FPrintf(out, DSL_CPE_CRLF);
+    }
+ 
+@@ -7503,12 +7503,12 @@ DSL_CLI_LOCAL DSL_int_t DSL_CPE_CLI_PM_D
+          pData.total.nElapsedTime, pData.total.bValid, pData.data.nHEC, pData.data.nTotalCells,
+          pData.data.nUserTotalCells, pData.data.nIBE,
+          pData.data.nTxUserTotalCells, pData.data.nTxIBE);
+-#if (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1)
++//#if (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1)
+       DSL_CPE_FPrintf (out,
+          " nCRC_P=%u nCRCP_P=%u nCV_P=%u nCVP_P=%u",
+          pData.data.nCRC_P, pData.data.nCRCP_P, pData.data.nCV_P,
+          pData.data.nCVP_P);
+-#endif /* (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1) */
++//#endif /* (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1) */
+       DSL_CPE_FPrintf(out, DSL_CPE_CRLF);
+    }
+ 
+@@ -7602,12 +7602,12 @@ DSL_CLI_LOCAL DSL_int_t DSL_CPE_CLI_PM_D
+          (DSL_uint32_t)pData.interval.bValid, (DSL_uint32_t)pData.data.nHEC, (DSL_uint32_t)pData.data.nTotalCells,
+          (DSL_uint32_t)pData.data.nUserTotalCells, (DSL_uint32_t)pData.data.nIBE,
+          (DSL_uint32_t)pData.data.nTxUserTotalCells, (DSL_uint32_t)pData.data.nTxIBE);
+-#if (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1)
++//#if (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1)
+       DSL_CPE_FPrintf (out,
+          " nCRC_P=%u nCRCP_P=%u nCV_P=%u nCVP_P=%u",
+          (DSL_uint32_t)pData.data.nCRC_P, (DSL_uint32_t)pData.data.nCRCP_P, (DSL_uint32_t)pData.data.nCV_P,
+          (DSL_uint32_t)pData.data.nCVP_P);
+-#endif /* (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1) */
++//#endif /* (INCLUDE_DSL_CPE_API_VDSL_SUPPORT == 1) */
+       DSL_CPE_FPrintf(out, DSL_CPE_CRLF);
+    }
+ 
