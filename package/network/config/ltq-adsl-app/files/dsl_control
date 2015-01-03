@@ -35,7 +35,11 @@ start() {
 	config_get annex dsl annex
 	config_get firmware dsl firmware
 
-	eval "xtu=\"\${annex_$annex}\""
+	if [ "$annex" = "auto" ]; then
+		xtu=" "
+	else
+		eval "xtu=\"\${annex_$annex}\""
+	fi
 
 	[ -z "${firmware}" ] &&
 		firmware=/lib/firmware/adsl.bin

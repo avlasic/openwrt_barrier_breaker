@@ -62,7 +62,7 @@ ucidef_set_interface_lan 'eth0'
 
 vpi=1
 vci=32
-annex="a"
+annex="auto"
 encaps="llc"
 payload="bridged"
 lan_mac=""
@@ -87,6 +87,8 @@ ARV4520PW)
 	;;
 
 ACMP252|GIGASX76X)
+	lan_mac=$(mtd_get_mac_ascii uboot_env ethaddr)
+	wan_mac=$(macaddr_add "$lan_mac" 1)
 	ucidef_set_interface_lan "eth0.1"
 	ucidef_add_switch "switch0" "1" "1"
 	ucidef_add_switch_vlan "switch0" "1" "4 3 2 1 5t"
