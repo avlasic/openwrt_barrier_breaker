@@ -160,12 +160,13 @@
 
 --- a/arch/mips/lantiq/Makefile	2014-10-15 21:41:46.000000000 +0200
 +++ b/arch/mips/lantiq/Makefile	2014-10-19 22:44:44.000000000 +0200
-@@ -4,7 +4,7 @@
+@@ -6,6 +6,7 @@
  # under the terms of the GNU General Public License version 2 as published
  # by the Free Software Foundation.
  
--obj-y := irq.o clk.o prom.o
-+obj-y := irq.o clk.o prom.o softdog_vpe.o
+ obj-y := irq.o clk.o prom.o
  
++obj-$(CONFIG_MIPS_VPE_LOADER) += softdog_vpe.o
  obj-$(CONFIG_EARLY_PRINTK) += early_printk.o
  
+ obj-$(CONFIG_SOC_TYPE_XWAY) += xway/
