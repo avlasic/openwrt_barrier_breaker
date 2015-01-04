@@ -161,8 +161,6 @@
 --- a/arch/mips/lantiq/Makefile	2014-10-15 21:41:46.000000000 +0200
 +++ b/arch/mips/lantiq/Makefile	2014-10-19 22:44:44.000000000 +0200
 @@ -6,6 +6,7 @@
- # under the terms of the GNU General Public License version 2 as published
- # by the Free Software Foundation.
  
  obj-y := irq.o clk.o prom.o
  
