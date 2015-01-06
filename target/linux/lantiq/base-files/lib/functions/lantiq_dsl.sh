@@ -3,6 +3,8 @@
 
 XDSL_CTRL=dsl_cpe_control
 
+header="%-25s %-13s %-13s\n"
+
 #
 # Basic functions to send CLI commands to the vdsl_cpe_control daemon
 #
@@ -69,6 +71,9 @@ data_rates() {
 	local sdrd
 	local sadru
 	local sadrd
+	
+	divider============================
+	divider=$divider$divider
 
 	csg=$(dsl_cmd g997csg 0 1)
 	drd=$(dsl_val "$csg" ActualDataRate)
@@ -102,8 +107,10 @@ data_rates() {
 		echo "dsl.att_data_rate_down_s=\"$sadrd\""
 		echo "dsl.att_data_rate_up_s=\"$sadru\""
 	else
-		echo "Actual Data Rate:	${sdrd}/s / ${sdru}/s"
-		echo "Attainable Data Rate:	${sadrd}/s / ${sadru}/s"
+		printf "\n$header" "" "DOWNSTREAM" "UPSTREAM"		
+		printf "$divider\n"
+		printf "$header" "Actual Data Rate:" "${sdrd}/s" "${sdru}/s"
+		printf "$header" "Attainable Data Rate:" "${sadrd}/s" "${sadru}/s"
 	fi
 }
 
@@ -133,8 +140,8 @@ chipset() {
 		echo "dsl.chipset=\"${cs} ${csv}\""
 		echo "dsl.co.chipset=\"${vid} / ${svid} ${vvn}\""
 	else
-		echo "CPE Chipset:		${cs} ${csv} / dsl fw: ${csfw}"
-		echo "CO vendor Info:		${vid} / ${svid} ${vvn}"
+		echo "CPE Chipset:	    ${cs} ${csv} / dsl fw: ${csfw}"
+		echo "CO vendor Info:	    ${vid} / ${svid} ${vvn}"
 	fi
 }
 
@@ -175,7 +182,7 @@ line_uptime() {
 	[ "${d}" -ne 0 ] && rc="${d}d ${rc}"
 
 	[ -z "$rc" ] && rc="down"
-	echo "Line Uptime:		${rc}"
+	echo "Line Uptime:	    ${rc}"
 }
 
 #
@@ -232,10 +239,10 @@ line_data() {
 		echo "dsl.transmit_power_down=$tpd"
 		echo "dsl.transmit_power_up=$tpu"
 	else
-		echo "Line Attenuation:	${latnd}dB / ${latnu}dB"
-		echo "Signal Attenuation:	${satnd}dB / ${satnu}dB"
-		echo "Noise Margin:		${snrd}dB / ${snru}dB"
-		echo "Transmit Power:		${tpd}dBm / ${tpu}dBm"
+		printf "$header" "Line Attenuation:" "${latnd} dB" "${latnu} dB" \
+		"Signal Attenuation:" "${satnd} dB" "${satnu} dB" \
+		"Noise Margin:" "${snrd} dB" "${snru} dB" \
+		"Transmit Power:" "${tpd} dBm" "${tpu} dBm"
 	fi
 }
 
@@ -341,14 +348,14 @@ line_data_extended() {
 		echo "dsl.fec_errors_15min_down=$fec15d"
 		echo "dsl.fec_errors_15min_up=$fec15u"
 	else
-		echo "Interleave Delay:	${idd} ms / ${idu} ms"
-		echo "INP:			${inpd} sym / ${inpu} sym"
-		echo "HEC errors:		${hecd} / ${hecu}"
-		echo "CRC errors:		${crcd} / ${crcu}"
-		echo "FEC errors:		${fecd} / ${fecu}"
-		echo "HEC 15 min errors:	${hec15d} / ${hec15u}"
-		echo "CRC 15 min errors:	${crc15d} / ${crc15u}"
-		echo "FEC 15 min errors:	${fec15d} / ${fec15u}"
+		printf "$header" "Interleave Delay:"	"${idd} ms" "${idu} ms" \
+		"INP:" "${inpd} sym" "${inpu} sym" \
+		"HEC errors:"	"${hecd}" "${hecu}" \
+		"CRC errors:"	"${crcd}" "${crcu}" \
+		"FEC errors:"	"${fecd}" "${fecu}" \
+		"HEC 15 min errors:"	"${hec15d}" "${hec15u}" \
+		"CRC 15 min errors:"	"${crc15d}" "${crc15u}" \
+		"FEC 15 min errors:"	"${fec15d}" "${fec15u}"
 	fi
 }
 
@@ -399,21 +406,20 @@ line_state() {
 		fi
 	else
 		if [ "$ls" = "0x801" ]; then
-			echo "Line State:		UP [$ls: $s]"
+			echo "Line State:	    UP [$ls: $s]"
 		else
-			echo "Line State:		DOWN [$ls: $s]"
+			echo "Line State:	    DOWN [$ls: $s]"
 		fi
-		echo "		     ----DOWNSTREAM / UPSTREAM----"
 	fi
 }
 
 status() {
 	chipset
 	line_state
+	line_uptime
 	data_rates
 	line_data
 	line_data_extended
-	line_uptime
 }
 
 lucistat() {
