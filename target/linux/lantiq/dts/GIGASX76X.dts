@@ -173,5 +173,11 @@
 			gpio-export,output = <1>;
 			gpios = <&gpio 19 0>;
 		};
+
+		relay {
+			gpio-export,name = "relay";
+			gpio-export,output = <1>;
+			gpios = <&gpio 30 0>;
+		};
 	};
 };
