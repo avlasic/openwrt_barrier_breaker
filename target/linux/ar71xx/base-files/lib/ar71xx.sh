@@ -571,6 +571,9 @@ ar71xx_board_detect() {
 	*"TL-MR3420 v2")
 		name="tl-mr3420-v2"
 		;;
+	*"TL-WA701ND v2")
+		name="tl-wa701nd-v2"
+		;;
 	*TL-WA750RE)
 		name="tl-wa750re"
 		;;
@@ -643,7 +646,7 @@ ar71xx_board_detect() {
 	*"TL-MR11U")
 		name="tl-mr11u"
 		;;
-	*"TL-MR13U")
+	*"TL-MR13U v1")
 		name="tl-mr13u"
 		;;
 	*"Tube2H")
